@@ -94,7 +94,7 @@ class Room(core_models.TimeStampedModel):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.city = str.capitalize(self.city)
+        self.city = self.city.title()
         super().save(*args, **kwargs)  # Call the real save() method
 
     def total_rating(self):
