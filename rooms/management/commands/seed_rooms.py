@@ -36,15 +36,32 @@ class Command(BaseCommand):
                 "baths": lambda x: random.randint(1, 5),
             },
         )
-        created_photos = seeder.execute()
-        created_clean = flatten(list(created_photos.values()))
+        created_rooms = seeder.execute()
+        created_clean = flatten(list(created_rooms.values()))
+        amenities = room_models.Amenity.objects.all()
+        facilities = room_models.Facility.objects.all()
+        rules = room_models.HouseRule.objects.all()
         for pk in created_clean:
             room = room_models.Room.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 17)):
+            for i in range(3, random.randint(10, 30)):
                 room_models.Photo.objects.create(
                     caption=seeder.faker.sentence(),
                     file=f"room_photos/{random.randint(1, 31)}.webp",
                     room=room,
                 )
+            for a in amenities:
+                magic_number = random.randint(0, 15)
+                if magic_number % 2 == 0:
+                    room.amenities.add(a)
 
-        self.stdout.write(self.style.SUCCESS(f"{number} users created!"))
+            for f in facilities:
+                magic_number = random.randint(0, 15)
+                if magic_number % 2 == 0:
+                    room.facilities.add(f)
+
+            for r in rules:
+                magic_number = random.randint(0, 15)
+                if magic_number % 2 == 0:
+                    room.house_rules.add(r)
+
+        self.stdout.write(self.style.SUCCESS(f"{number} rooms created!"))
