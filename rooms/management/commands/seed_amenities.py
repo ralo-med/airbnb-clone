@@ -59,6 +59,9 @@ class Command(BaseCommand):
             "TV",
         ]
         for a in amenities:
+            """
+            중복제거
+            """
             if not room_models.Amenity.objects.filter(name=a):
                 room_models.Amenity.objects.create(name=a)
         self.stdout.write(self.style.SUCCESS("Amenities created!"))
