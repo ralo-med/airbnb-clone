@@ -44,7 +44,6 @@ def search(request):
     city = str.capitalize(city)
     country = request.GET.get("country", "KR")
     room_type = int(request.GET.get("room_type", 0))
-
     price = int(request.GET.get("price", 0))
     guests = int(request.GET.get("guests", 0))
     bedrooms = int(request.GET.get("bedrooms", 0))
@@ -88,7 +87,7 @@ def search(request):
 
     filter_args["country"] = country
 
-    if room_types != 0:
+    if room_type != 0:
         filter_args["room_type__pk"] = room_type
 
     rooms = models.Room.objects.filter(**filter_args)
