@@ -113,6 +113,14 @@ def search(request):
 
     rooms = models.Room.objects.filter(**filter_args)
 
+    if len(s_amenities) > 0:
+        for s_amenity in s_amenities:
+            rooms = rooms.filter(amenities__pk=int(s_amenity))
+
+    if len(s_facilities) > 0:
+        for s_facility in s_amenities:
+            rooms = rooms.filter(facilities__pk=int(s_facility))
+            
     return render(
         request,
         "rooms/search.html",
