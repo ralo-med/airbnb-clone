@@ -93,10 +93,10 @@ class SearchView(View):
             rooms = models.Room.objects.filter(**filter_args)
 
             for amenity in amenities:
-                rooms = rooms.filter["amenities"] = amenity
+                rooms = rooms.filter(amenities=amenity)
 
             for facility in facilities:
-                rooms = rooms.filter["facilities"] = facility
+                rooms = rooms.filter(facilities=facility)
 
             qs = rooms.order_by("-created")
 
