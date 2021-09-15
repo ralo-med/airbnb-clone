@@ -16,4 +16,14 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("User does not exist")
 
     def clean_password(self):
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        try:
+            user = models.User.objects.get(username=email)
+            if user.check_password(password):
+                return password
+            else:
+                forms.ValidationError("Password is wrong")
+        except models.User.DoesNotExist:
+            pass
         return "lalala"
