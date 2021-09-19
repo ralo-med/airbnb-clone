@@ -20,6 +20,15 @@ class LoginForm(forms.Form):
             self.add_error("email", forms.ValidationError("User does not exist"))
 
 
+"""
+class SignUpForm(UserCreationForm):
+    username = forms.EmailField(label="Email")
+    class Meta:
+        model = models.User
+        fields = ("email",)
+"""
+
+
 class SignUpForm(forms.ModelForm):
     class Meta:
         model = models.User
