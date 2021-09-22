@@ -20,4 +20,10 @@ input {
   @apply w-full text-lg font-light rounded-sm py-4 text-left border border-gray-600 px-5 focus:outline-none focus:border-teal-500;
 }
 
+form {
+  input {
+    @apply mb-3;
+  }
+}
+
 @tailwind utilities;
