@@ -7,17 +7,30 @@
     "url": "git+https://github.com/ralo-med/airbnb-clone.git"
   },
   "scripts": {
-    "css": "gulp"
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "homepage": "https://github.com/ralo-med/airbnb-clone#readme",
   "devDependencies": {
-    "autoprefixer": "^10.3.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "del": "^4.1.1",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-csso": "^4.0.1",
     "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.0.0",
     "node-sass": "^6.0.1",
+    "sass": "^1.42.1",
     "tailwindcss": "^2.2.15"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ralo-med/airbnb-clone/issues"
+  },
+  "main": "gulpfile.babel.js",
+  "dependencies": {},
+  "author": "",
+  "license": "ISC"
 }
