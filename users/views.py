@@ -4,6 +4,7 @@ from users import models
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
 from . import forms
@@ -123,6 +124,7 @@ def github_callback(request):
                         user.set_unusable_password()
                         user.save()
                     login(request, user)
+                    messages.success(request, f"Welcome back {user.first_name}")
                     return redirect(reverse("core:home"))
                 else:
                     raise GithubException()
@@ -221,6 +223,7 @@ def kakao_callback(request):
                 user.avartar.save(
                     f"{nickname}-avatar", ContentFile(photo_request.content)
                 )
+        messages.success(request, f"Welcome back {user.first_name}")
         login(request, user)
         return redirect(reverse("core:home"))
     except KakaoException:
