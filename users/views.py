@@ -1,7 +1,8 @@
 import os
+from django.views.generic.edit import DeleteView
 import requests
 from users import models
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib import messages
@@ -229,3 +230,8 @@ def kakao_callback(request):
         return redirect(reverse("core:home"))
     except KakaoException:
         return redirect(reverse("users:login"))
+
+
+class UserProfileView(DetailView):
+    model = models.User
+    context_object_name = "user_obj"
