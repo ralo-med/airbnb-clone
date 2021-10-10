@@ -1,4 +1,5 @@
 import os
+from django.views.generic.edit import UpdateView
 
 import requests
 from users import models
@@ -235,3 +236,7 @@ def kakao_callback(request):
 class UserProfileView(DetailView):
     model = models.User
     context_object_name = "user_obj"
+
+
+class UpdateProfileView(UpdateView):
+    pass
