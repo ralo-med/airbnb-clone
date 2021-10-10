@@ -1,5 +1,5 @@
 import os
-from django.views.generic.edit import DeleteView
+
 import requests
 from users import models
 from django.views.generic import FormView, DetailView
