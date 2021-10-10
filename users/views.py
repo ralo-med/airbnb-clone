@@ -224,7 +224,7 @@ def kakao_callback(request):
             if profile_image is not None:
                 photo_request = requests.get(profile_image)
                 user.avartar.save(
-                    f"{nickname}-avatar", ContentFile(photo_request.content)
+                    f"{nickname}-avartar", ContentFile(photo_request.content)
                 )
         messages.success(request, f"Welcome back {user.first_name}")
         login(request, user)
@@ -239,4 +239,18 @@ class UserProfileView(DetailView):
 
 
 class UpdateProfileView(UpdateView):
-    pass
+    model = models.User
+    template_name = "users/update-profile.html"
+    fields = (
+        "first_name",
+        "last_name",
+        "avartar",
+        "gender",
+        "bio",
+        "birthdate",
+        "language",
+        "currency",
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
