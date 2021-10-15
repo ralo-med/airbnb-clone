@@ -116,5 +116,4 @@ class Room(core_models.TimeStampedModel):
 
     def get_next_four_photos(self):
         photos = self.photos.all()[1:5]
-        print(photos)
         return photos
