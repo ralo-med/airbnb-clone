@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.http import Http404
 from . import models, forms
+from users import mixins as user_mixins
 
 
 # Create your views here.
@@ -122,7 +123,7 @@ class SearchView(View):
         )
 
 
-class EditRoomView(UpdateView):
+class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
 
     model = models.Room
     template_name = "rooms/room_edit.html"
@@ -145,3 +146,18 @@ class EditRoomView(UpdateView):
         "facilities",
         "house_rules",
     )
+
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+        return room
+
+
+class RoomPhotosView(user_mixins.LoggedInOnlyView, View):
+    def get(self, request, pk):
+        room = models.Room.objects.get(pk=pk)
+
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+        return render(request, "rooms/room_photos.html", {"room": room})
