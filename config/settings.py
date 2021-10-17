@@ -149,3 +149,8 @@ EMAIL_HOST_PASSWORD = os.environ.get("GMAIL_PASSWORD")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_FROM = "myemail@gmail.com"
+
+
+# Auth
+
+LOGIN_URL = "/users/login"

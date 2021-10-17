@@ -8,7 +8,11 @@
 {%block content %} 
 
     <div class="-mt-5 container max-w-full h-50vh mb-20 flex">
-        <div class="h-full w-1/2 bg-cover bg-center" style="background-image:url({{room.first_photo}});"></div>
+        {% if room.first_photo != None %}
+            <div class="h-full w-1/2 bg-cover bg-center" style="background-image:url({{room.first_photo}});"></div>
+        {% else %} 
+             <div class="h-full w-1/2 bg-blue-100"></div>
+        {% endif %}
         <div class="h-full w-1/2 flex flex-wrap">
             
             {% for photo in room.get_next_four_photos %}
