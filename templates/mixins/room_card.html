@@ -4,8 +4,9 @@
         {% if room.first_photo != None %}
             <div class="  bg-cover h-56 w-full bg-center rounded-lg mb-3" style="background-image: url({{room.first_photo}})"></div>
             {% else %}
-            <div class="  bg- h-56 w-full bg-center rounded-lg mb-3 bg-blue-200 flex justify-center items-center">
-                <span>No photo!!</span>
+            <div class=" h-56 w-full bg-center rounded-lg mb-3 bg-blue-100 bg-no-repeat bg-contain 
+            " style="background-image: url(/static/img/no_image.png);">
+                
             </div>
         {% endif %}
             

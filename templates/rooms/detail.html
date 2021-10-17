@@ -14,9 +14,17 @@
              <div class="h-full w-1/2 bg-blue-100"></div>
         {% endif %}
         <div class="h-full w-1/2 flex flex-wrap">
-            
+         
             {% for photo in room.get_next_four_photos %}
-                <div style="background-image: url({{photo.file.url}});" class="w-1/2 h-auto bg-cover bg-center border-gray-500 border"></div>
+            
+                {% if photo.file %}
+                    <div style="background-image: url({{photo.file.url}});" class="w-1/2 h-auto bg-cover bg-center border-white border bg-blue-200"></div>
+                    {% else %}
+                    
+                    <div style="background-image: url(/static/img/no_image.png);" class="w-1/2 h-auto bg-contain bg-no-repeat bg-center border-white border bg-blue-200"></div>
+                   
+                {% endif %}
+                    
             {% endfor %}
                 
         </div>

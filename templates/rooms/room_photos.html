@@ -17,7 +17,11 @@
         {% for photo in room.photos.all  %}
         <div class="mb-5 border p-6 border-gray-400 flex justify-between">
             <div class="flex items-start">
-                <img src="{{photo.file.url}}" class= "w-32 h-32">
+                
+                {% if photo.file %}
+                    <img src="{{photo.file.url}}" class= "w-32 h-32">
+                {% endif %}
+                    
                 <span class="ml-5 text-xl">{{photo.caption}}</span>
             </div>
             <div class="flex flex-col w-1/5">

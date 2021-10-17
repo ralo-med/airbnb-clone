@@ -118,8 +118,6 @@ class Room(core_models.TimeStampedModel):
             return None
 
     def get_next_four_photos(self):
-        try:
-            photos = self.photos.all()[1:5]
-            return photos
-        except IndentationError:
-            return None
+
+        photos = self.photos.all()[1:5]
+        return photos
