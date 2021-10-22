@@ -121,3 +121,11 @@ class Room(core_models.TimeStampedModel):
 
         photos = self.photos.all()[1:5]
         return photos
+
+
+def become_host(request):
+    pass
+
+
+def become_quest(request):
+    pass
