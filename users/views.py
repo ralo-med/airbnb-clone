@@ -313,4 +313,4 @@ def switch_hosting(request):
         del request.session["is_hosting"]
     except KeyError:
         request.session["is_hosting"] = True
-    return redirect(reverse("core:home"))
+    return redirect(request.META["HTTP_REFERER"])
